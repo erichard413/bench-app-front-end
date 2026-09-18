@@ -7,12 +7,16 @@ class BenchAppAPI {
   // create static variable for auth token
   static token;
 
+  static setToken(token) {
+    this.token = token;
+  }
+
   // create function for making requests to the server
   static async request(endpoint, data = {}, method = "get") {
     console.debug(`API Call: ${endpoint}, ${data}, ${method}`);
 
     const url = `${BASE_URL}/api/${endpoint}`;
-    const headers = { Authorization: `Bearer ${BenchAppAPI.token}` };
+    const headers = { Authorization: `Bearer ${this.token}` };
     const params = method === "get" ? data : {};
 
     try {
@@ -30,6 +34,12 @@ class BenchAppAPI {
   static async logIn({ username, password }) {
     let res = await this.request("auth/token", { username, password }, "post");
     if (!res.token) throw new Error("Invalid username/password!");
+    return res;
+  }
+
+  // get user data function
+  static async getUser(username) {
+    let res = await this.request(`users/${username}`, {}, "get");
     return res;
   }
 }

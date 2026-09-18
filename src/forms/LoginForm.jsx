@@ -1,10 +1,15 @@
 import { useState } from "react";
 import BenchAppAPI from "../api";
+import { useAuth } from "../hooks/useAuthContext";
+import AppHelpers from "../helpers/AppHelpers";
+import { useUser } from "../hooks/useUserContext";
 
 function LoginForm() {
   const initialFormState = { username: "", password: "" };
   const [formData, setFormData] = useState(initialFormState);
   const [token, setToken] = useState("");
+  const { currentToken, setCurrentToken } = useAuth();
+  const { user, setUser } = useUser();
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -14,36 +19,47 @@ function LoginForm() {
   const handleSubmit = async e => {
     e.preventDefault();
     const res = await BenchAppAPI.logIn(formData);
-    if (res.token) setToken(res.token);
+    if (res.token) setCurrentToken(res.token);
     return;
+  };
+  const handleLogOut = async e => {
+    e.preventDefault();
+    await AppHelpers.logOutUser(setUser, setCurrentToken);
   };
 
   return (
     <>
-      <form className="form">
-        <label htmlFor="username">Username:</label>
-        <input
-          id="username"
-          name="username"
-          type="text"
-          placeholder="Username"
-          value={formData.username}
-          onChange={handleChange}
-        />
-        <label htmlFor="password">Password:</label>
-        <input
-          id="password"
-          name="password"
-          type="password"
-          placeholder="Password"
-          value={formData.password}
-          onChange={handleChange}
-        />
-        <button type="submit" onClick={handleSubmit}>
-          Submit
+      {!currentToken && (
+        <form className="form">
+          <label htmlFor="username">Username:</label>
+          <input
+            id="username"
+            name="username"
+            type="text"
+            placeholder="Username"
+            value={formData.username}
+            onChange={handleChange}
+          />
+          <label htmlFor="password">Password:</label>
+          <input
+            id="password"
+            name="password"
+            type="password"
+            placeholder="Password"
+            value={formData.password}
+            onChange={handleChange}
+          />
+          <button type="submit" onClick={handleSubmit}>
+            Submit
+          </button>
+        </form>
+      )}
+      {currentToken && (
+        <button type="submit" onClick={handleLogOut}>
+          Log Out
         </button>
-      </form>
-      <p>TOKEN: {token && token}</p>
+      )}
+      <p>TOKEN: {currentToken && currentToken}</p>
     </>
   );
 }

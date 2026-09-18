@@ -1,9 +1,11 @@
 import LoginForm from "../forms/LoginForm";
+import { useAuth } from "../hooks/useAuthContext";
 
 function Home() {
+  const { currentToken, setCurrentToken } = useAuth();
   return (
     <div>
-      <p>LOG IN</p>
+      <p>{currentToken ? "LOG OUT" : "LOG IN"}</p>
       <LoginForm />
     </div>
   );
