@@ -13,12 +13,15 @@ class AppHelpers {
     try {
       let data = jwtDecode(currentToken);
       let userData = await BenchAppAPI.getUser(data.username);
+      console.log(userData);
       setUser(userData);
+      return true;
     } catch (err) {
       console.log(err);
       BenchAppAPI.token = null;
       // remove the token from LS if invalid
       localStorage.removeItem("token");
+      return false;
     }
   }
   // function to log in user, store token on BenchAppAPI
@@ -36,10 +39,8 @@ class AppHelpers {
   }
   // function to log out user
   static async logOutUser(setUser, setCurrentToken) {
-    setUser(null);
     setCurrentToken(null);
-    localStorage.removeItem("token");
-    BenchAppAPI.setToken(null);
+    setUser(null);
   }
 }
 

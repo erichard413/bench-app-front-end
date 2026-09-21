@@ -1,7 +1,7 @@
 import LoginForm from "../forms/LoginForm";
 import { useAuth } from "../hooks/useAuthContext";
 
-function Home() {
+function Login() {
   const { currentToken, setCurrentToken } = useAuth();
   return (
     <div>
@@ -11,4 +11,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Login;

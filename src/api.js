@@ -39,7 +39,7 @@ class BenchAppAPI {
 
   // get user data function
   static async getUser(username) {
-    let res = await this.request(`users/${username}`, {}, "get");
+    let res = await this.request(`user/${username}`, {}, "get");
     return res;
   }
 }
