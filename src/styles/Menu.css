@@ -1,0 +1,5 @@
+.Menu {
+  background-color: #111a2b;
+  z-index: 1;
+  transition: width 0.4s ease;
+}

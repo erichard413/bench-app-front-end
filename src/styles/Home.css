@@ -1,82 +1,152 @@
-.Home {
-  --header-height: 64px;
-  --menu-width: 240px;
-  --right-panel-width: 320px;
-
-  min-height: 100vh;
-
-  display: grid;
-
-  grid-template-columns:
-    var(--menu-width)
-    minmax(0, 1fr)
-    var(--right-panel-width);
-
-  grid-template-rows:
-    var(--header-height)
-    1fr;
-
-  grid-template-areas:
-    "header header header"
-    "menu content right";
-
-  background: #f5f6f8;
-  color: #1f2937;
+/*👉body {
+  margin: 0;
+  ➡ Prevent the entire page from scrolling ⬅
+  overflow: hidden;
 }
 
-.Home > .Header {
-  grid-area: header;
+.Header {
+  height: 5vh;
   background-color: red;
 }
 
-.Home > .Menu {
-  grid-area: menu;
-  background-color: blue;
-  min-width: 0;
-
-  resize: horizontal;
-  overflow: auto;
-}
-
-.Home > .Content {
-  grid-area: content;
-
-  min-width: 0;
-  min-height: 0;
-
-  overflow-y: auto;
-
-  background-color: green;
-}
-
-.Home > .RightPanel {
-  grid-area: right;
-
-  min-width: 0;
-  min-height: 0;
-
-  overflow-y: auto;
-
-  background-color: yellow;
+.container {
+  display: flex;
+  width: 100%; ➡ Changed from min-width to prevent stretching ⬅
+  height: 95vh;
 }
 
 .Menu {
+  width: 200px;
+  min-width: 100px;
+  max-width: 500px;
+  height: 100%; ➡ Fill container height ⬅
+  resize: horizontal;
+  ➡ Combined rules: Changed from hidden to auto so resize handle works ⬅
+  overflow: auto;
+  background-color: #111a2b;
+  z-index: 1;
+}
+
+.Content {
+  flex: 1;
+  height: 100%; ➡ Lock height to the container ⬅
+  background-color: blue;
+  ➡ Explicitly tell this column to handle its own scrolling ⬅
+  overflow: hidden;
+}
+
+➡ This container holds the scrolling content and the static right panel side-by-side ⬅
+.Layout-Container {
+  display: flex;
+  height: 100%;
+  background-color: green;
+  overflow: hidden;
+}
+
+.Main-Scroll-Area {
+  flex: 1;
+  height: 100%;
+  overflow-y: auto;
+
+  ➡ 1. For Safari and Chromium-based browsers (Chrome, Edge, Opera) ⬅
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  ➡ 2. For Firefox ⬅
+  scrollbar-width: none;
+
+  ➡ 3. For legacy Internet Explorer and Edge ⬅
+  -ms-overflow-style: none;
+}
+
+.RightPanel {
+  width: 25vw;
+  flex-shrink: 0;
+  height: 100%; ➡ Fill container height ⬅
+  background: #f0f0f0;
+  overflow: hidden; ➡ Stays static ⬅
+}👈*/
+
+/* old */
+
+body {
+  margin: 0;
+  overflow: hidden;
+}
+
+.Layout {
   position: relative;
-  height: 100%;
+  height: 100vh;
 }
 
-.MenuContent {
-  height: 100%;
+.Header {
+  height: 5vh;
+  background-color: red;
 }
 
-.MenuResizeHandle {
-  position: absolute;
+.container {
+  display: flex;
+  width: 100%;
+  height: 95vh;
+}
 
-  top: 0;
-  right: 0;
-  bottom: 0;
+.Menu {
+  /*👉  width: 200px;👈*/
+  min-width: 100px;
+  max-width: 500px;
+  height: 100vh;
 
-  width: 6px;
+  resize: horizontal;
+  overflow: auto;
 
-  cursor: ew-resize;
+  background-color: #111a2b;
+
+  /* Take the menu out of the normal vertical flow */
+  position: relative;
+
+  /* Extend upward into the header */
+  margin-top: -5vh;
+
+  /* Compensate for the height we moved upward */
+  padding-top: 5vh;
+
+  box-sizing: border-box;
+
+  z-index: 10;
+}
+
+.Content {
+  flex: 1;
+  height: 100%;
+  background-color: blue;
+  overflow: hidden;
+}
+
+.Layout-Container {
+  display: flex;
+  height: 100%;
+  background-color: green;
+  overflow: hidden;
+}
+
+.Main-Scroll-Area {
+  flex: 1;
+  height: 100%;
+  overflow-y: auto;
+
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.Main-Scroll-Area::-webkit-scrollbar {
+  display: none;
+}
+
+.RightPanel {
+  width: 25vw;
+  flex-shrink: 0;
+  height: 100%;
+  background: #f0f0f0;
+  overflow: hidden;
 }

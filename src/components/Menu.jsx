@@ -1,30 +1,18 @@
-function Menu() {
-  const handleMouseDown = e => {
-    e.preventDefault();
+import "../styles/Menu.css";
+import { useState } from "react";
+import { useLayoutEffect } from "react";
 
-    const startX = e.clientX;
-    const startWidth = menuWidth;
-
-    const handleMouseMove = e => {
-      const newWidth = startWidth + (e.clientX - startX);
-
-      setMenuWidth(Math.min(Math.max(newWidth, 180), 400));
-    };
-
-    const handleMouseUp = () => {
-      document.removeEventListener("mousemove", handleMouseMove);
-      document.removeEventListener("mouseup", handleMouseUp);
-    };
-
-    document.addEventListener("mousemove", handleMouseMove);
-    document.addEventListener("mouseup", handleMouseUp);
+function Menu({ isExpanded, setIsExpanded }) {
+  const expandToggle = () => {
+    setIsExpanded(e => !e);
   };
 
   return (
-    <nav className="Menu">
-      <div className="MenuContent">{/* Menu stuff */}</div>
-
-      <div className="MenuResizeHandle" onMouseDown={handleMouseDown} />
+    <nav className={`Menu`} style={{ width: `${isExpanded ? "13vw" : "2vw"}` }}>
+      <div className="MenuContent">
+        I AM THE MENU
+        <button onClick={expandToggle}>{isExpanded ? "Close" : "Open"}</button>
+      </div>
     </nav>
   );
 }
