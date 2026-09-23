@@ -1,5 +1,35 @@
 .Menu {
   background-color: #111a2b;
   z-index: 1;
-  transition: width 0.4s ease;
+  color: #94a3b8;
+  transition: width 0.5s cubic-bezier(0.25, 1, 0.3, 1);
 }
+.Menu-nav li {
+  color: #94a3b8;
+  list-style-type: none;
+  font-size: 1.8em;
+}
+.Menu-nav ul {
+  display: flex;
+  flex-direction: column;
+  justify-self: left;
+  padding-left: 0.5vw;
+  gap: 18px;
+}
+#nav-open-close {
+  text-align: center;
+}
+
+/*👉App background	Deep Navy	#0B1220
+Sidebar	Navy	#111A2B
+Cards / panels	Slate	#172235
+Elevated cards	Light Slate	#1E2D42
+Borders	Muted Slate	#2A3A50
+Primary text	Off White	#F1F5F9
+Secondary text	Slate Gray	#94A3B8
+Muted text	Dark Gray	#64748B
+Primary accent	Ice Cyan	#38BDF8
+Accent hover	Bright Ice	#60D5FF
+Success	Ice Green	#34D399
+Warning	Amber	#FBBF24
+Danger	Red	#F87171👈*/

@@ -9,12 +9,13 @@ async function getData(data, setUser) {
 
 class AppHelpers {
   // grab token from LS on page load, grab user on page load
-  static async getUserData(currentToken, setUser) {
+  static async getUserData(currentToken, setUser, setAuthLoading) {
     try {
       let data = jwtDecode(currentToken);
       let userData = await BenchAppAPI.getUser(data.username);
       console.log(userData);
       setUser(userData);
+      setAuthLoading(false);
       return true;
     } catch (err) {
       console.log(err);

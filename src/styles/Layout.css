@@ -1,4 +1,4 @@
-/*👉body {
+body {
   margin: 0;
   overflow: hidden;
 }
@@ -21,25 +21,20 @@
 
 .Menu {
   width: 200px;
-  min-width: 100px;
+  min-width: 55px;
   max-width: 500px;
   height: 100vh;
 
-  resize: horizontal;
-  overflow: auto;
-
   background-color: #111a2b;
 
-  ➡ Take the menu out of the normal vertical flow ⬅
+  /* Take the menu out of the normal vertical flow */
   position: relative;
 
-  ➡ Extend upward into the header ⬅
+  /* Extend upward into the header */
   margin-top: -5vh;
 
-  ➡ Compensate for the height we moved upward ⬅
+  /* Compensate for the height we moved upward */
   padding-top: 5vh;
-
-  box-sizing: border-box;
 
   z-index: 10;
 }
@@ -77,4 +72,4 @@
   height: 100%;
   background: #f0f0f0;
   overflow: hidden;
-}👈*/
+}

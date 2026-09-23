@@ -13,8 +13,13 @@ function App() {
   const { user, setUser } = useUser();
 
   useEffect(() => {
-    if (currentToken) AppHelpers.getUserData(currentToken, setUser);
+    if (currentToken)
+      AppHelpers.getUserData(currentToken, setUser, setAuthLoading);
   }, [currentToken]);
+
+  useEffect(() => {
+    if (!authLoading && !user) navigate("/login");
+  }, [authLoading]);
 
   return (
     <div className="App">

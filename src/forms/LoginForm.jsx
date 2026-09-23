@@ -3,8 +3,10 @@ import BenchAppAPI from "../api";
 import { useAuth } from "../hooks/useAuthContext";
 import AppHelpers from "../helpers/AppHelpers";
 import { useUser } from "../hooks/useUserContext";
+import { useNavigate } from "react-router-dom";
 
 function LoginForm() {
+  const navigate = useNavigate();
   const initialFormState = { username: "", password: "" };
   const [formData, setFormData] = useState(initialFormState);
   const [token, setToken] = useState("");
@@ -19,7 +21,10 @@ function LoginForm() {
   const handleSubmit = async e => {
     e.preventDefault();
     const res = await BenchAppAPI.logIn(formData);
-    if (res.token) setCurrentToken(res.token);
+    if (res.token) {
+      setCurrentToken(res.token);
+      navigate("/");
+    }
     return;
   };
   const handleLogOut = async e => {

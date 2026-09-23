@@ -2,7 +2,7 @@ function Header({ isMenuExpanded }) {
   return (
     <div
       className="Header"
-      style={{ "padding-left": isMenuExpanded ? "13vw" : "4vw" }}
+      style={{ paddingLeft: isMenuExpanded ? "13vw" : "55px" }}
     >
       I am the header
     </div>

@@ -1,6 +1,5 @@
 import "../styles/Home.css";
 import Layout from "./Layout";
-import RightPanel from "../components/RightPanel";
 
 function Home() {
   return (

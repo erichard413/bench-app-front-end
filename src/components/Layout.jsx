@@ -1,8 +1,8 @@
-import "../styles/Home.css";
 import Header from "./Header";
 import Menu from "./Menu";
 import RightPanel from "./RightPanel";
 import { useState } from "react";
+import "../styles/Layout.css";
 
 function Layout({ children }) {
   const [isMenuExpanded, setIsMenuExpanded] = useState(false);
