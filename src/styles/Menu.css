@@ -2,7 +2,7 @@
   background-color: #111a2b;
   z-index: 1;
   color: #94a3b8;
-  transition: width 0.5s cubic-bezier(0.25, 1, 0.3, 1);
+  transition: width 0.3s cubic-bezier(0.25, 1, 0.3, 1);
 }
 .Menu-nav li {
   color: #94a3b8;
@@ -16,8 +16,22 @@
   padding-left: 0.5vw;
   gap: 18px;
 }
-#nav-open-close {
+.Menu .menu-messages-notification {
+  position: relative;
+  top: -3px;
+  border-radius: 50%;
+  background-color: #ec3a3a;
+  color: #94a3b8;
+  padding: 2px 12px;
   text-align: center;
+  font-weight: 400;
+  font-size: 15px;
+  margin-left: 5px;
+}
+.Menu .menu-messages-notification p {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
 }
 
 /*👉App background	Deep Navy	#0B1220

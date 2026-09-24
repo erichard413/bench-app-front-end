@@ -5,6 +5,7 @@ import { useUser } from "./hooks/useUserContext";
 import Home from "./components/Home";
 import Login from "./components/Login";
 import AppHelpers from "./helpers/AppHelpers";
+import "./App.css";
 
 function App() {
   const navigate = useNavigate();

@@ -9,10 +9,11 @@ body {
 }
 
 .Header {
-  height: 5vh;
-  background-color: red;
+  height: 10vh;
+  background-color: white;
+  box-sizing: border-box; /* Forces border to stay inside */
+  border-bottom: 2px solid #e8edf4;
 }
-
 .container {
   display: flex;
   width: 100%;
@@ -20,9 +21,8 @@ body {
 }
 
 .Menu {
-  width: 200px;
-  min-width: 55px;
-  max-width: 500px;
+  min-width: 60px;
+  max-width: 240px;
   height: 100vh;
 
   background-color: #111a2b;
@@ -31,10 +31,10 @@ body {
   position: relative;
 
   /* Extend upward into the header */
-  margin-top: -5vh;
+  margin-top: -10vh;
 
-  /* Compensate for the height we moved upward */
-  padding-top: 5vh;
+  /*👉  ➡ Compensate for the height we moved upward ⬅
+  padding-top: 10vh;👈*/
 
   z-index: 10;
 }
@@ -42,14 +42,13 @@ body {
 .Content {
   flex: 1;
   height: 100%;
-  background-color: blue;
   overflow: hidden;
 }
 
 .Layout-Container {
   display: flex;
   height: 100%;
-  background-color: green;
+
   overflow: hidden;
 }
 
@@ -70,6 +69,5 @@ body {
   width: 25vw;
   flex-shrink: 0;
   height: 100%;
-  background: #f0f0f0;
   overflow: hidden;
 }

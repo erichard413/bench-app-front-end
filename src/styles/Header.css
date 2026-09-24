@@ -1,0 +1,60 @@
+.Header {
+  display: flex;
+  align-items: center;
+  color: #111a2b;
+}
+
+.Header .logo-container {
+  padding-left: 3vw;
+}
+
+.Header .logo-container img {
+  height: 55px;
+}
+.Header h2 {
+  padding-left: 15px;
+}
+.Header .down-chevron {
+  padding-left: 15px;
+}
+.Header .right-corner {
+  display: flex;
+  gap: 2vw;
+  margin-left: auto;
+  padding-right: 4vw;
+}
+.Header select {
+  border: 2px solid #e8edf4;
+  border-radius: 5px;
+  font-family: "Saira Condensed", sans-serif;
+  font-weight: 400;
+  font-size: 22px;
+}
+.Header #bell {
+  font-size: 35px;
+  padding-top: 8px;
+}
+.Header #bell-notification {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 12px;
+  height: 12px;
+  background-color: #ec3a3a;
+  border-radius: 50%;
+  border: 2px solid white;
+}
+.bell-container {
+  position: relative;
+  display: inline-block;
+}
+.Header .header-user-section img {
+  width: 50px;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.Header .header-user-section {
+  display: flex;
+  align-items: center;
+}

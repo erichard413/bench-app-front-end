@@ -28,18 +28,20 @@ function Menu({ isExpanded, setIsExpanded }) {
   return (
     <nav
       className={`Menu`}
-      style={{ width: `${isExpanded ? "13vw" : "1vw"}` }}
+      style={{ width: `${isExpanded ? "17vw" : "60px"}` }}
       onTransitionEnd={setIsClosed}
     >
       <div className="MenuContent">
-        <FontAwesomeIcon
-          id="nav-open-close"
-          onClick={expandToggle}
-          icon={isExpanded ? faAnglesLeft : faAnglesRight}
-        />
-
         <div className="Menu-nav">
           <ul>
+            <li>
+              <FontAwesomeIcon
+                id="nav-open-close"
+                style={{ cursor: "pointer" }}
+                onClick={expandToggle}
+                icon={isExpanded ? faAnglesLeft : faAnglesRight}
+              />
+            </li>
             <li>
               <FontAwesomeIcon icon={faUsersRectangle} />{" "}
               {isExpanded && !isOpening && "Team"}
@@ -58,7 +60,10 @@ function Menu({ isExpanded, setIsExpanded }) {
             </li>
             <li>
               <FontAwesomeIcon icon={faMessage} />{" "}
-              {isExpanded && !isOpening && "Messages"}
+              {isExpanded && !isOpening && "Messages"}{" "}
+              <span className="menu-messages-notification">
+                <p>1</p>
+              </span>
             </li>
             <li>
               <FontAwesomeIcon icon={faGear} />{" "}
