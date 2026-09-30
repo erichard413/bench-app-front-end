@@ -1,9 +1,119 @@
-.Login > div {
-  display: inline-block;
+.Login h1 {
+  font-size: 3rem;
+  font-weight: 500;
+  color: white;
+  padding: 0px;
+  margin: 0px;
+  line-height: 55px;
 }
+
+.Login h3 {
+  font-size: 1.5rem;
+  font-weight: 200;
+  padding: 0px;
+  margin: 0px;
+  padding-bottom: 10px;
+}
+
+.Login {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  color: #94a3b8;
+}
+
 .Login .left {
-  width: 40vw;
+  width: 35vw;
+  height: 100vh;
+  background-image: url("../assets/login-splash.jpg");
+  background-color: #4f5b72;
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: multiply;
 }
+
 .Login .right {
-  width: 60vw;
+  flex: 1;
+  height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: #111a2b;
+  text-align: center;
+}
+
+/* Form */
+.Login form {
+  min-width: 320px;
+  max-width: 450px;
+  color: rgb(167, 199, 230);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Login button {
+  background-color: rgb(125, 187, 245);
+  border: 0;
+  color: #111a2b;
+  font-size: 1.1rem;
+  width: 100%;
+  height: 5vh;
+  border-radius: 8px;
+  margin-top: 10px;
+}
+
+.Login input[type="text"],
+.Login input[type="email"],
+.Login input[type="password"] {
+  width: 100%;
+  box-sizing: border-box;
+  color: rgb(167, 199, 230);
+  background-color: #1d2535;
+  font-size: 0.9rem;
+  font-weight: 100;
+  padding: 12px;
+
+  border: 1px solid rgb(61, 82, 110);
+  border-radius: 5px;
+
+  margin: 10px 0;
+}
+.Login input:focus-visible {
+  outline: 0px solid rgb(125, 187, 245);
+  outline-offset: 2px;
+  border-color: rgb(125, 187, 245);
+}
+
+.login-line {
+  display: inline-block;
+  position: relative;
+  top: 21px;
+  background-color: rgb(61, 82, 110);
+  height: 1px;
+  width: 100%;
+  z-index: 1;
+}
+#or {
+  display: inline-block;
+  position: relative;
+  top: -15px;
+  padding: 0px 15px;
+  justify-self: center;
+  background-color: #111a2b;
+  z-index: 2;
+}
+#sign-up {
+  padding: 0px;
+  margin: 0px;
+  line-height: 2px;
+}
+#sign-up a,
+a:visited,
+a:active {
+  color: rgb(125, 187, 245);
+  text-decoration: none;
 }

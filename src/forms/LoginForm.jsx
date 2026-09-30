@@ -4,8 +4,10 @@ import { useAuth } from "../hooks/useAuthContext";
 import AppHelpers from "../helpers/AppHelpers";
 import { useUser } from "../hooks/useUserContext";
 import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
-function LoginForm() {
+function LoginForm({ authLoading }) {
   const navigate = useNavigate();
   const initialFormState = { username: "", password: "" };
   const [formData, setFormData] = useState(initialFormState);
@@ -36,7 +38,6 @@ function LoginForm() {
     <>
       {!currentToken && (
         <form className="form">
-          <label htmlFor="username">Username:</label>
           <input
             id="username"
             name="username"
@@ -45,7 +46,7 @@ function LoginForm() {
             value={formData.username}
             onChange={handleChange}
           />
-          <label htmlFor="password">Password:</label>
+
           <input
             id="password"
             name="password"
@@ -55,16 +56,16 @@ function LoginForm() {
             onChange={handleChange}
           />
           <button type="submit" onClick={handleSubmit}>
-            Submit
+            {authLoading ? (
+              "Loading..."
+            ) : (
+              <>
+                Log in <FontAwesomeIcon icon={faArrowRight} />
+              </>
+            )}
           </button>
         </form>
       )}
-      {currentToken && (
-        <button type="submit" onClick={handleLogOut}>
-          Log Out
-        </button>
-      )}
-      <p>TOKEN: {currentToken && currentToken}</p>
     </>
   );
 }

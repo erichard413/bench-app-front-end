@@ -41,7 +41,11 @@ function App() {
           exact
           path="/login"
           element={
-            currentToken && user ? <Navigate to="/" replace /> : <Login />
+            currentToken && user ? (
+              <Navigate to="/" replace />
+            ) : (
+              <Login authLoading={authLoading} />
+            )
           }
         />
       </Routes>
