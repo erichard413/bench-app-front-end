@@ -32,7 +32,7 @@ function Menu({ isExpanded, setIsExpanded }) {
       onTransitionEnd={setIsClosed}
     >
       <div className="MenuContent">
-        <div className="Menu-nav">
+        <div className={`Menu-nav ${isExpanded ? "opened" : "closed"}`}>
           <ul>
             <li>
               <FontAwesomeIcon
@@ -43,27 +43,43 @@ function Menu({ isExpanded, setIsExpanded }) {
               />
             </li>
             <li>
-              <FontAwesomeIcon icon={faUsersRectangle} />{" "}
+              <FontAwesomeIcon icon={faUsersRectangle} />
               {isExpanded && !isOpening && "Team"}
             </li>
             <li>
-              <FontAwesomeIcon icon={faUsers} />{" "}
+              <FontAwesomeIcon icon={faUsers} />
               {isExpanded && !isOpening && "Roster"}
             </li>
             <li>
-              <FontAwesomeIcon icon={faCalendar} />{" "}
+              <FontAwesomeIcon icon={faCalendar} />
               {isExpanded && !isOpening && "Schedule"}
             </li>
             <li>
-              <FontAwesomeIcon icon={faChartLine} />{" "}
+              <FontAwesomeIcon icon={faChartLine} />
               {isExpanded && !isOpening && "Stats"}
             </li>
-            <li>
-              <FontAwesomeIcon icon={faMessage} />{" "}
-              {isExpanded && !isOpening && "Messages"}{" "}
-              <span className="menu-messages-notification">
-                <p>1</p>
-              </span>
+            {/* <li className="messages-item">
+              <FontAwesomeIcon icon={faMessage} />
+
+              {isExpanded && !isOpening ? (
+                <>
+                  Messages <span className="menu-messages-notification">1</span>
+                </>
+              ) : (
+                <span className="menu-messages-notification closed"></span>
+              )}
+            </li> */}
+            <li className="messages-item">
+              <FontAwesomeIcon icon={faMessage} />
+
+              {isExpanded && !isOpening ? (
+                <span className="menu-label">
+                  Messages
+                  <span className="menu-messages-notification">1</span>
+                </span>
+              ) : (
+                <span className="menu-messages-notification closed"></span>
+              )}
             </li>
             <li>
               <FontAwesomeIcon icon={faGear} />{" "}

@@ -2,36 +2,67 @@
   background-color: #111a2b;
   z-index: 1;
   color: #94a3b8;
-  transition: width 0.3s cubic-bezier(0.25, 1, 0.3, 1);
+  transition: width 0.7s cubic-bezier(0.25, 1, 0.3, 1);
 }
 .Menu-nav li {
+  display: grid;
+  grid-template-columns: 55px 1fr;
+  align-items: center;
+
   color: #94a3b8;
   list-style-type: none;
   font-size: 1.8em;
+  line-height: 1;
+}
+.Menu-nav li svg {
+  width: 25px;
+  justify-self: start;
+  margin: auto;
 }
 .Menu-nav ul {
   display: flex;
   flex-direction: column;
   justify-self: left;
-  padding-left: 0.5vw;
+  padding-left: 0px;
   gap: 18px;
 }
-.Menu .menu-messages-notification {
+.messages-item {
   position: relative;
-  top: -3px;
+}
+.Menu .menu-messages-notification {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 20px;
+  height: 20px;
+
   border-radius: 50%;
   background-color: #ec3a3a;
-  color: #94a3b8;
-  padding: 2px 12px;
-  text-align: center;
-  font-weight: 400;
-  font-size: 15px;
+  color: white;
+
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1;
+
   margin-left: 5px;
+  vertical-align: middle;
 }
-.Menu .menu-messages-notification p {
-  display: inline-block;
-  padding: 0;
-  margin: 0;
+
+.Menu-nav .menu-messages-notification.closed {
+  position: absolute;
+
+  width: 8px;
+  height: 8px;
+
+  top: -4px;
+  left: 25px;
+
+  padding: 2px;
+
+  border: 3px solid #111a2b;
+  border-radius: 50%;
+  background-color: #ec3a3a;
 }
 
 /*👉App background	Deep Navy	#0B1220

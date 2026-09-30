@@ -1,0 +1,9 @@
+.Login > div {
+  display: inline-block;
+}
+.Login .left {
+  width: 40vw;
+}
+.Login .right {
+  width: 60vw;
+}

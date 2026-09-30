@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import { useAuth } from "./hooks/useAuthContext";
 import { useUser } from "./hooks/useUserContext";
 import Home from "./components/Home";
@@ -8,25 +8,42 @@ import AppHelpers from "./helpers/AppHelpers";
 import "./App.css";
 
 function App() {
-  const navigate = useNavigate();
   const [authLoading, setAuthLoading] = useState(true);
-  const { currentToken, setCurrentToken } = useAuth();
+  const { currentToken } = useAuth();
   const { user, setUser } = useUser();
 
   useEffect(() => {
-    if (currentToken)
-      AppHelpers.getUserData(currentToken, setUser, setAuthLoading);
-  }, [currentToken]);
+    // if no token, do not authenticate.
+    if (!currentToken) {
+      setAuthLoading(false);
+      return;
+    }
+    // token exists, attempt to retrieve user.
+    AppHelpers.getUserData(currentToken, setUser, setAuthLoading);
+  }, [currentToken, setUser]);
 
-  useEffect(() => {
-    if (!authLoading && !user) navigate("/login");
-  }, [authLoading]);
+  // Don't do routing until auth is checked
+  if (authLoading) {
+    return <div>loading...</div>;
+  }
 
   return (
     <div className="App">
       <Routes>
-        <Route exact path="/" element={<Home />} />
-        <Route exact path="/login" element={<Login />} />
+        <Route
+          exact
+          path="/"
+          element={
+            currentToken && user ? <Home /> : <Navigate to="/login" replace />
+          }
+        />
+        <Route
+          exact
+          path="/login"
+          element={
+            currentToken && user ? <Navigate to="/" replace /> : <Login />
+          }
+        />
       </Routes>
     </div>
   );

@@ -16,13 +16,13 @@ class AppHelpers {
       console.log(userData);
       setUser(userData);
       setAuthLoading(false);
-      return true;
     } catch (err) {
       console.log(err);
       BenchAppAPI.token = null;
       // remove the token from LS if invalid
       localStorage.removeItem("token");
-      return false;
+    } finally {
+      setAuthLoading(false);
     }
   }
   // function to log in user, store token on BenchAppAPI
