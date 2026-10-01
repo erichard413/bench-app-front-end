@@ -6,6 +6,7 @@ import Home from "./components/Home";
 import Login from "./components/Login";
 import AppHelpers from "./helpers/AppHelpers";
 import "./App.css";
+import Signup from "./components/Signup";
 
 function App() {
   const [authLoading, setAuthLoading] = useState(true);
@@ -46,6 +47,13 @@ function App() {
             ) : (
               <Login authLoading={authLoading} />
             )
+          }
+        />
+        <Route
+          exact
+          path="/signup"
+          element={
+            currentToken && user ? <Navigate to="/" replace /> : <Signup />
           }
         />
       </Routes>

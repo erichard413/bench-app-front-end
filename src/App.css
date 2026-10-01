@@ -5,6 +5,23 @@ body {
   font-family: "Saira Condensed", sans-serif;
   font-weight: 100;
 }
+button {
+  cursor: pointer;
+}
+
+/*👉App background	Deep Navy	#0B1220
+Sidebar	Navy	#111A2B
+Cards / panels	Slate	#172235
+Elevated cards	Light Slate	#1E2D42
+Borders	Muted Slate	#2A3A50
+Primary text	Off White	#F1F5F9
+Secondary text	Slate Gray	#94A3B8
+Muted text	Dark Gray	#64748B
+Primary accent	Ice Cyan	#38BDF8
+Accent hover	Bright Ice	#60D5FF
+Success	Ice Green	#34D399
+Warning	Amber	#FBBF24
+Danger	Red	#F87171👈*/
 
 /*👉.saira-condensed-thin {
   font-family: "Saira Condensed", sans-serif;

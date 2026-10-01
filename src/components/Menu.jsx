@@ -1,5 +1,5 @@
 import "../styles/Menu.css";
-import { useState, useLayoutEffect } from "react";
+import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faUsers,
@@ -21,7 +21,6 @@ function Menu({ isExpanded, setIsExpanded }) {
   };
 
   const setIsClosed = () => {
-    console.log("is closinger");
     if (isOpening) setIsOpening(false);
   };
 

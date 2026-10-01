@@ -1,0 +1,9 @@
+.RightPanel {
+  position: relative;
+  width: 25vw;
+  flex-shrink: 0;
+  height: 100%;
+  overflow: hidden;
+  background-color: white;
+  z-index: 1;
+}

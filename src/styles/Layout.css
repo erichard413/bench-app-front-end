@@ -6,14 +6,9 @@ body {
 .Layout {
   position: relative;
   height: 100vh;
+  overflow: hidden;
 }
 
-.Header {
-  height: 10vh;
-  background-color: white;
-  box-sizing: border-box; /* Forces border to stay inside */
-  border-bottom: 2px solid #e8edf4;
-}
 .container {
   display: flex;
   width: 100%;
@@ -35,8 +30,6 @@ body {
 
   /*👉  ➡ Compensate for the height we moved upward ⬅
   padding-top: 10vh;👈*/
-
-  z-index: 10;
 }
 
 .Content {
@@ -63,11 +56,4 @@ body {
 
 .Main-Scroll-Area::-webkit-scrollbar {
   display: none;
-}
-
-.RightPanel {
-  width: 25vw;
-  flex-shrink: 0;
-  height: 100%;
-  overflow: hidden;
 }

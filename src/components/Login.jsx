@@ -3,7 +3,6 @@ import { useAuth } from "../hooks/useAuthContext";
 import "../styles/Login.css";
 
 function Login({ authLoading }) {
-  const { currentToken, setCurrentToken } = useAuth();
   return (
     <div className="Login">
       <div className="left"></div>

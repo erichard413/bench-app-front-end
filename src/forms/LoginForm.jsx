@@ -1,7 +1,6 @@
 import { useState } from "react";
 import BenchAppAPI from "../api";
 import { useAuth } from "../hooks/useAuthContext";
-import AppHelpers from "../helpers/AppHelpers";
 import { useUser } from "../hooks/useUserContext";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -10,32 +9,38 @@ import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 function LoginForm({ authLoading }) {
   const navigate = useNavigate();
   const initialFormState = { username: "", password: "" };
+  const [flash, setFlash] = useState(null);
   const [formData, setFormData] = useState(initialFormState);
-  const [token, setToken] = useState("");
   const { currentToken, setCurrentToken } = useAuth();
-  const { user, setUser } = useUser();
+  const { setUser } = useUser();
 
   const handleChange = e => {
     const { name, value } = e.target;
-    setFormData(data => ({ ...data, [name]: value }));
+
+    setFormData(data => ({ ...data, [name]: value.replace(/\s/g, "") }));
   };
 
   const handleSubmit = async e => {
     e.preventDefault();
-    const res = await BenchAppAPI.logIn(formData);
-    if (res.token) {
-      setCurrentToken(res.token);
-      navigate("/");
+    try {
+      const res = await BenchAppAPI.logIn(formData);
+      if (res.token) {
+        setCurrentToken(res.token);
+        navigate("/");
+      }
+    } catch (err) {
+      console.log(err.message);
+      setFlash(err.message);
     }
     return;
-  };
-  const handleLogOut = async e => {
-    e.preventDefault();
-    await AppHelpers.logOutUser(setUser, setCurrentToken);
   };
 
   return (
     <>
+      <div className="flash-div">
+        <p>{flash}</p>
+      </div>
+
       {!currentToken && (
         <form className="form">
           <input

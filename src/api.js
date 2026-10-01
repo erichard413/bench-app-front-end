@@ -26,7 +26,7 @@ class BenchAppAPI {
       // return array of error messages - can comment out later.
       let message = err.response?.data.error.message;
       return Array.isArray(message) ? message : [message];
-      //   return err.response;
+      // return err.response.data.error.message;
     }
   }
 

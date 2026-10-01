@@ -8,7 +8,7 @@
 }
 
 .Login h3 {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   font-weight: 200;
   padding: 0px;
   margin: 0px;
@@ -116,4 +116,11 @@ a:visited,
 a:active {
   color: rgb(125, 187, 245);
   text-decoration: none;
+}
+.flash-div p {
+  color: #f87171;
+  margin: 0px;
+}
+.flash-div {
+  height: 0.9rem;
 }
