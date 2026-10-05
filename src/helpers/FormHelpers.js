@@ -11,9 +11,14 @@ function isEmail(str) {
 
 class FormHelpers {
   static handleFormChange = (e, setFormData) => {
-    const { name, value } = e.target;
+    let { name, value } = e.target;
+    let maxLength = 20;
+    if (name == "username") maxLength = 20;
 
-    setFormData(data => ({ ...data, [name]: value.replace(/\s/g, "") }));
+    setFormData(data => ({
+      ...data,
+      [name]: value.replace(/\s/g, "").slice(0, maxLength),
+    }));
   };
   // isValidSignup - this is a validation function for the sign up form. This function returns an array, first index is a boolean second index is an error string.
   static isValidSignup = formData => {
@@ -46,6 +51,7 @@ class FormHelpers {
     if (lastName.length == 0) return [false, "Please enter a last name"];
     if (lastName.length > 30)
       return [false, "Last name cannot exceed 30 characters"];
+    return [true, ""];
   };
 }
 

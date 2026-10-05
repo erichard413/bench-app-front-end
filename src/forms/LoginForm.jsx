@@ -4,7 +4,11 @@ import { useAuth } from "../hooks/useAuthContext";
 import { useUser } from "../hooks/useUserContext";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import {
+  faArrowRight,
+  faEye,
+  faEyeSlash,
+} from "@fortawesome/free-solid-svg-icons";
 import FormHelpers from "../helpers/FormHelpers";
 
 function LoginForm({ authLoading }) {
@@ -14,6 +18,7 @@ function LoginForm({ authLoading }) {
   const [formData, setFormData] = useState(initialFormState);
   const { currentToken, setCurrentToken } = useAuth();
   const { setUser } = useUser();
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleChange = e => {
     FormHelpers.handleFormChange(e, setFormData);
@@ -50,15 +55,21 @@ function LoginForm({ authLoading }) {
             value={formData.username}
             onChange={handleChange}
           />
+          <div className="password-input">
+            <input
+              type={showPassword ? "text" : "password"}
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+            />
 
-          <input
-            id="password"
-            name="password"
-            type="password"
-            placeholder="Password"
-            value={formData.password}
-            onChange={handleChange}
-          />
+            <FontAwesomeIcon
+              id="password-eye"
+              icon={showPassword ? faEyeSlash : faEye}
+              onClick={() => setShowPassword(e => !e)}
+            />
+          </div>
+
           <button type="submit" onClick={handleSubmit}>
             {authLoading ? (
               "Loading..."

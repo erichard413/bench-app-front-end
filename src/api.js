@@ -22,11 +22,23 @@ class BenchAppAPI {
     try {
       return (await axios({ url, method, data, params, headers })).data;
     } catch (err) {
-      console.error("API Error:", err.response);
-      // return array of error messages - can comment out later.
-      let message = err.response?.data.error.message;
-      return Array.isArray(message) ? message : [message];
-      // return err.response.data.error.message;
+      console.error("API Error:", err);
+
+      // Server could not be reached
+      if (err.request && !err.response) {
+        return ["Unable to connect to the server. Please try again later."];
+      }
+      if (err.response) {
+        // return array of error messages - can comment out later.
+        let message = err.response?.data.error.message;
+        return Array.isArray(message)
+          ? message
+          : [message || "An unexpected server error occured."];
+        // return err.response.data.error.message;
+      }
+
+      // something else went wrong.
+      return ["An unexpected error occured. please try again."];
     }
   }
 
@@ -40,6 +52,12 @@ class BenchAppAPI {
   // get user data function
   static async getUser(username) {
     let res = await this.request(`user/${username}`, {}, "get");
+    return res;
+  }
+  // register a new user through /signup
+  static async registerUser(data) {
+    let res = await this.request(`auth/register`, { ...data }, "post");
+    if (!res.token) throw new Error(res);
     return res;
   }
 }

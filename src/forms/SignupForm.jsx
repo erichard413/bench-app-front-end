@@ -4,10 +4,12 @@ import { useAuth } from "../hooks/useAuthContext";
 import { useUser } from "../hooks/useUserContext";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import {
+  faArrowRight,
+  faEye,
+  faEyeSlash,
+} from "@fortawesome/free-solid-svg-icons";
 import FormHelpers from "../helpers/FormHelpers";
-
-// TODO: COMPLETE SIGN UP LOGIC. ADD A "EYE Button" TOGGLE TO VIEW PASSWORD ENTRY.
 
 function SignupForm({ authLoading }) {
   const navigate = useNavigate();
@@ -21,6 +23,7 @@ function SignupForm({ authLoading }) {
   const [flash, setFlash] = useState(null);
   const [formData, setFormData] = useState(initialFormState);
   const { currentToken, setCurrentToken } = useAuth();
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleChange = e => {
     FormHelpers.handleFormChange(e, setFormData);
@@ -28,19 +31,20 @@ function SignupForm({ authLoading }) {
 
   const handleSubmit = async e => {
     e.preventDefault();
-    // try {
-    //   const res = await BenchAppAPI.logIn(formData);
-    //   if (res.token) {
-    //     setCurrentToken(res.token);
-    //     navigate("/");
-    //   }
-    // } catch (err) {
-    //   console.log(err.message);
-    //   setFlash(err.message);
-    // }
     const isValid = FormHelpers.isValidSignup(formData);
-    if (!isValid[0]) setFlash(isValid[1]);
-
+    if (!isValid[0]) {
+      setFlash(isValid[1]);
+      return;
+    }
+    // do logic here.
+    try {
+      const res = await BenchAppAPI.registerUser(formData);
+      // log in user here
+      setCurrentToken(res.token);
+    } catch (err) {
+      let message = Array.isArray(err.message) ? err.message[0] : err.message;
+      setFlash(message);
+    }
     return;
   };
 
@@ -61,14 +65,31 @@ function SignupForm({ authLoading }) {
             onChange={handleChange}
           />
 
-          <input
+          {/* <input
             id="password"
             name="password"
             type="password"
             placeholder="Password"
             value={formData.password}
             onChange={handleChange}
-          />
+          /> */}
+          <div className="password-input">
+            <input
+              type={showPassword ? "text" : "password"}
+              name="password"
+              id="password"
+              placeholder="Password"
+              value={formData.password}
+              onChange={handleChange}
+            />
+
+            <FontAwesomeIcon
+              id="password-eye"
+              icon={showPassword ? faEyeSlash : faEye}
+              onClick={() => setShowPassword(e => !e)}
+            />
+          </div>
+
           <input
             id="email"
             name="email"

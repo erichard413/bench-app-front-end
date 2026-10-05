@@ -22,6 +22,7 @@
 }
 .Header .down-chevron {
   padding-left: 15px;
+  cursor: pointer;
 }
 .Header .right-corner {
   display: flex;
@@ -93,4 +94,5 @@
 
 .AccountDropDown li {
   padding-left: 20px;
+  cursor: pointer;
 }
