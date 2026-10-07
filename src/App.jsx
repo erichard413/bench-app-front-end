@@ -29,35 +29,37 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <Routes>
-        <Route
-          exact
-          path="/"
-          element={
-            currentToken && user ? <Home /> : <Navigate to="/login" replace />
-          }
-        />
-        <Route
-          exact
-          path="/login"
-          element={
-            currentToken && user ? (
-              <Navigate to="/" replace />
-            ) : (
-              <Login authLoading={authLoading} />
-            )
-          }
-        />
-        <Route
-          exact
-          path="/signup"
-          element={
-            currentToken && user ? <Navigate to="/" replace /> : <Signup />
-          }
-        />
-      </Routes>
-    </div>
+    <>
+      <div className="App">
+        <Routes>
+          <Route
+            exact
+            path="/"
+            element={
+              currentToken && user ? <Home /> : <Navigate to="/login" replace />
+            }
+          />
+          <Route
+            exact
+            path="/login"
+            element={
+              currentToken && user ? (
+                <Navigate to="/" replace />
+              ) : (
+                <Login authLoading={authLoading} />
+              )
+            }
+          />
+          <Route
+            exact
+            path="/signup"
+            element={
+              currentToken && user ? <Navigate to="/" replace /> : <Signup />
+            }
+          />
+        </Routes>
+      </div>
+    </>
   );
 }
 
