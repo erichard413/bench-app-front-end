@@ -4,6 +4,51 @@
   flex-shrink: 0;
   height: 100%;
   overflow: hidden;
-  background-color: white;
   z-index: 1;
+}
+
+.RightPanel .ContentBlock {
+  border: 2px solid #e8edf4;
+  border-radius: 15px;
+  background-color: white;
+  padding: 5px 20px;
+  margin: 10px;
+}
+
+.ContentBlock .content-block-top {
+  display: inline-block;
+  margin: 0px;
+  padding: 0px;
+}
+
+.ContentBlock h3 {
+  padding: 5px 0px;
+  margin: 0px;
+  font-size: 1em;
+}
+
+.ContentBlock .content-block-middle {
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  text-align: center;
+}
+.ContentBlock .logo-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.ContentBlock .logo-container img {
+  display: block;
+  max-width: 150px;
+  width: 100%;
+  height: auto;
+}
+
+.ContentBlock #team-name {
+  color: grey;
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-align: center;
 }

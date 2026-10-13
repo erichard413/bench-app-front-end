@@ -7,6 +7,7 @@ import Login from "./components/Login";
 import AppHelpers from "./helpers/AppHelpers";
 import "./App.css";
 import Signup from "./components/Signup";
+import LoadingSpinner from "./components/Loading";
 
 function App() {
   const [authLoading, setAuthLoading] = useState(true);
@@ -25,7 +26,9 @@ function App() {
 
   // Don't do routing until auth is checked
   if (authLoading) {
-    return <div>loading...</div>;
+    return (
+      <LoadingSpinner message="Authenticating..." fullScreen size="large" />
+    );
   }
 
   return (

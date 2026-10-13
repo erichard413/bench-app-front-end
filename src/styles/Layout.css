@@ -36,6 +36,11 @@ body {
   flex: 1;
   height: 100%;
   overflow: hidden;
+  background: linear-gradient(
+    90deg,
+    rgba(249, 250, 252, 1) 0%,
+    rgba(248, 250, 252, 1) 100%
+  );
 }
 
 .Layout-Container {

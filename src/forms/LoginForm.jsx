@@ -59,6 +59,7 @@ function LoginForm({ authLoading }) {
             <input
               type={showPassword ? "text" : "password"}
               name="password"
+              placeholder="Password"
               value={formData.password}
               onChange={handleChange}
             />
