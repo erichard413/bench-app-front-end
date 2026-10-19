@@ -51,12 +51,3 @@ function ContentBlock({ children }) {
 }
 
 export default RightPanel;
-//  <Modal setModalState={setModalState} modalState={modalState}>
-//         <div className="modal-body">
-//           <h4>Title</h4>
-//           Message
-//           <div className="Modal-btns">
-//             <button onClick={testingModal}>Confirm</button>
-//           </div>
-//         </div>
-//       </Modal>

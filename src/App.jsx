@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
 import { useAuth } from "./hooks/useAuthContext";
 import { useUser } from "./hooks/useUserContext";
+import { useTeam } from "./hooks/useTeamContext";
 import Home from "./components/Home";
 import Login from "./components/Login";
 import AppHelpers from "./helpers/AppHelpers";
@@ -13,6 +14,9 @@ function App() {
   const [authLoading, setAuthLoading] = useState(true);
   const { currentToken } = useAuth();
   const { user, setUser } = useUser();
+  const { team, setTeam } = useTeam();
+
+  console.log(team);
 
   useEffect(() => {
     // if no token, do not authenticate.
@@ -21,8 +25,8 @@ function App() {
       return;
     }
     // token exists, attempt to retrieve user.
-    AppHelpers.getUserData(currentToken, setUser, setAuthLoading);
-  }, [currentToken, setUser]);
+    AppHelpers.getUserData(currentToken, setUser, setAuthLoading, setTeam);
+  }, [currentToken]);
 
   // Don't do routing until auth is checked
   if (authLoading) {

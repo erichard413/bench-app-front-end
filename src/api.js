@@ -60,6 +60,13 @@ class BenchAppAPI {
     if (!res.token) throw new Error(res);
     return res;
   }
+  // get user's team(s)
+  static async getTeams(userId) {
+    let res = await this.request(`user/${userId}/teams`);
+    console.log(res);
+    if (!res.rows) throw new Error("No teams found for user!");
+    return res;
+  }
 }
 
 export default BenchAppAPI;

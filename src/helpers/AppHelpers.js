@@ -1,20 +1,21 @@
 import BenchAppAPI from "../api";
 import { jwtDecode } from "jwt-decode";
 
-async function getData(data, setUser) {
-  let userData = await BenchAppAPI.getUser(data.username);
-  setUser(userData);
-  return res;
-}
-
 class AppHelpers {
+  static async getData(data, setUser) {
+    let userData = await BenchAppAPI.getUser(data.username);
+    setUser(userData);
+    return res;
+  }
   // grab token from LS on page load, grab user on page load
-  static async getUserData(currentToken, setUser, setAuthLoading) {
+  static async getUserData(currentToken, setUser, setAuthLoading, setTeam) {
     try {
       let data = jwtDecode(currentToken);
       let userData = await BenchAppAPI.getUser(data.username);
-      console.log(userData);
       setUser(userData);
+      // get teams for user
+      let teams = await BenchAppAPI.getTeams(userData.id);
+      setTeam(teams.rows);
       setAuthLoading(false);
     } catch (err) {
       console.log(err);
@@ -32,7 +33,7 @@ class AppHelpers {
       localStorage.setItem("token", res.token);
       BenchAppAPI.token = res.token;
       let data = jwtDecode(BenchAppAPI.token);
-      return getData(data);
+      return this.getData(data);
     } catch (err) {
       console.log(err);
       return err;

@@ -5,13 +5,16 @@ import "./index.css";
 import App from "./App.jsx";
 import { AuthProvider } from "./hooks/useAuthContext.jsx";
 import { UserProvider } from "./hooks/useUserContext.jsx";
+import { TeamProvider } from "./hooks/useTeamContext.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter>
       <AuthProvider>
         <UserProvider>
-          <App />
+          <TeamProvider>
+            <App />
+          </TeamProvider>
         </UserProvider>
       </AuthProvider>
     </BrowserRouter>
