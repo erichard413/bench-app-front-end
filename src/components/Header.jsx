@@ -4,9 +4,11 @@ import AccountDropDown from "./AccountDropDown";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import { faBell } from "@fortawesome/free-regular-svg-icons";
+import { useTeams } from "../hooks/useTeamContext";
 
 function Header({ isMenuExpanded }) {
   const [isAccountExpanded, setIsAccountExpanded] = useState(false);
+  const { team, setTeam } = useTeams();
 
   const handleAccountToggle = e => {
     setIsAccountExpanded(e => !e);

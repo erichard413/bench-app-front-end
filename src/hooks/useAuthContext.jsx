@@ -12,12 +12,10 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     if (currentToken) {
       // if there's a token, save it to local storage and store it on the BenchAppAPI class
+      console.log("setting token");
       localStorage.setItem("token", currentToken);
       //
       BenchAppAPI.setToken(currentToken);
-    } else {
-      localStorage.removeItem("token");
-      BenchAppAPI.setToken(null);
     }
   }, [currentToken]);
 

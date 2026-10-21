@@ -2,13 +2,13 @@ import LoginForm from "../forms/LoginForm";
 import "../styles/Login.css";
 import Auth from "./Auth";
 
-function Login({ authLoading }) {
+function Login() {
   return (
     <Auth>
       <div className="auth-div">
         <h1>Welcome back</h1>
         <h3>Log in to your account</h3>
-        <LoginForm authLoading={authLoading} />
+        <LoginForm />
         <span className="login-line"></span>
         <p id="or">or</p>
         <p id="sign-up">

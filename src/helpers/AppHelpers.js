@@ -5,17 +5,18 @@ class AppHelpers {
   static async getData(data, setUser) {
     let userData = await BenchAppAPI.getUser(data.username);
     setUser(userData);
-    return res;
+    return userData;
   }
   // grab token from LS on page load, grab user on page load
-  static async getUserData(currentToken, setUser, setAuthLoading, setTeam) {
+  static async getUserData(currentToken, setUser, setAuthLoading, setTeams) {
+    console.log("getUserData...");
     try {
       let data = jwtDecode(currentToken);
       let userData = await BenchAppAPI.getUser(data.username);
       setUser(userData);
       // get teams for user
       let teams = await BenchAppAPI.getTeams(userData.id);
-      setTeam(teams.rows);
+      setTeams(teams.rows);
       setAuthLoading(false);
     } catch (err) {
       console.log(err);
@@ -33,7 +34,7 @@ class AppHelpers {
       localStorage.setItem("token", res.token);
       BenchAppAPI.token = res.token;
       let data = jwtDecode(BenchAppAPI.token);
-      return this.getData(data);
+      return this.getData(data, setUser);
     } catch (err) {
       console.log(err);
       return err;
