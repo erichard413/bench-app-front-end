@@ -13,7 +13,7 @@ import BenchAppAPI from "./api";
 
 function App() {
   const [authLoading, setAuthLoading] = useState(true);
-  const { currentToken } = useAuth();
+  const { currentToken, setCurrentToken } = useAuth();
   const { user, setUser } = useUser();
   const { teams, setTeams } = useTeams();
 
@@ -41,12 +41,24 @@ function App() {
         currentToken,
         setUser,
         setAuthLoading,
-        setTeams,
+        setCurrentToken,
       );
     }
 
     authenticate();
-  }, [currentToken, setUser, setTeams]);
+  }, [currentToken, setUser]);
+
+  useEffect(() => {
+    async function getUserTeams(userId) {
+      const teams = await BenchAppAPI.getTeams(userId);
+      console.log("***GETTING TEAMS***");
+      console.log(teams);
+      setTeams(teams);
+    }
+    if (user) {
+      getUserTeams(user.id);
+    }
+  }, [user]);
 
   // Don't do routing until auth is checked
   if (authLoading) {

@@ -4,8 +4,7 @@ import { createContext, useContext, useState } from "react";
 export const TeamContext = createContext(null);
 
 export function TeamProvider({ children }) {
-  const [teams, setTeams] = useState(null);
-
+  const [teams, setTeams] = useState([]);
   return (
     <TeamContext.Provider value={{ teams, setTeams }}>
       {children}

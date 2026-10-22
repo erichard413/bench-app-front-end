@@ -8,7 +8,7 @@ class BenchAppAPI {
   static token;
 
   static setToken(token) {
-    this.token = token;
+    this.token = token || null;
   }
 
   // create function for making requests to the server
@@ -63,7 +63,6 @@ class BenchAppAPI {
   // get user's team(s)
   static async getTeams(userId) {
     let res = await this.request(`user/${userId}/teams`);
-    if (!res.rows) throw new Error("No teams found for user!");
     return res;
   }
 }

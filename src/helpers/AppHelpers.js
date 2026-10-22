@@ -8,42 +8,42 @@ class AppHelpers {
     return userData;
   }
   // grab token from LS on page load, grab user on page load
-  static async getUserData(currentToken, setUser, setAuthLoading, setTeams) {
+  static async getUserData(
+    currentToken,
+    setUser,
+    setAuthLoading,
+    setTeams,
+    setCurrentToken,
+  ) {
     console.log("getUserData...");
     try {
       let data = jwtDecode(currentToken);
       let userData = await BenchAppAPI.getUser(data.username);
       setUser(userData);
-      // get teams for user
-      let teams = await BenchAppAPI.getTeams(userData.id);
-      setTeams(teams.rows);
       setAuthLoading(false);
     } catch (err) {
       console.log(err);
-      BenchAppAPI.token = null;
+      setUser(null);
+      setTeams([]);
+      setCurrentToken(null);
+
+      BenchAppAPI.setToken(null);
       // remove the token from LS if invalid
       localStorage.removeItem("token");
     } finally {
       setAuthLoading(false);
     }
   }
-  // function to log in user, store token on BenchAppAPI
-  static async logInUser(username, password, setUser) {
-    try {
-      const res = await BenchAppAPI.logIn(username, password);
-      localStorage.setItem("token", res.token);
-      BenchAppAPI.token = res.token;
-      let data = jwtDecode(BenchAppAPI.token);
-      return this.getData(data, setUser);
-    } catch (err) {
-      console.log(err);
-      return err;
-    }
-  }
+
   // function to log out user
   static async logOutUser(setUser, setCurrentToken) {
     setCurrentToken(null);
     setUser(null);
+  }
+  static async getUserTeams(userId) {
+    const teams = await BenchAppAPI.getTeams(userId);
+    console.log("***GETTING TEAMS***");
+    return teams;
   }
 }
 
