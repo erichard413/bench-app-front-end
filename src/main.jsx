@@ -6,6 +6,7 @@ import App from "./App.jsx";
 import { AuthProvider } from "./hooks/useAuthContext.jsx";
 import { UserProvider } from "./hooks/useUserContext.jsx";
 import { TeamProvider } from "./hooks/useTeamContext.jsx";
+import { SelectedTeamProvider } from "./hooks/useSelectedTeamContext.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -13,7 +14,9 @@ createRoot(document.getElementById("root")).render(
       <AuthProvider>
         <UserProvider>
           <TeamProvider>
-            <App />
+            <SelectedTeamProvider>
+              <App />
+            </SelectedTeamProvider>
           </TeamProvider>
         </UserProvider>
       </AuthProvider>

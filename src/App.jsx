@@ -10,12 +10,14 @@ import "./App.css";
 import Signup from "./components/Signup";
 import LoadingSpinner from "./components/Loading";
 import BenchAppAPI from "./api";
+import { useSelectedTeam } from "./hooks/useSelectedTeamContext";
 
 function App() {
   const [authLoading, setAuthLoading] = useState(true);
   const { currentToken, setCurrentToken } = useAuth();
   const { user, setUser } = useUser();
   const { teams, setTeams } = useTeams();
+  const { selectedTeam, setSelectedTeam } = useSelectedTeam();
 
   console.log("Current token:", currentToken);
   console.log("API token:", BenchAppAPI.token);
@@ -53,7 +55,8 @@ function App() {
       const teams = await BenchAppAPI.getTeams(userId);
       console.log("***GETTING TEAMS***");
       console.log(teams);
-      setTeams(teams);
+      setTeams(teams || []);
+      if (teams[0]) setSelectedTeam(teams[0]);
     }
     if (user) {
       getUserTeams(user.id);

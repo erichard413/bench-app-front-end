@@ -1,3 +1,4 @@
+import { useSelectedTeam } from "../hooks/useSelectedTeamContext";
 import "../styles/RightPanel.css";
 import Modal from "./modals/Modal";
 import { useState } from "react";
@@ -8,22 +9,28 @@ function RightPanel() {
     e.preventDefault();
     setModalState(s => !s);
   };
+  const { selectedTeam } = useSelectedTeam();
+
   return (
     <div className="RightPanel">
       <ContentBlock>
         <div className="team-overview">
-          <div className="content-block-top">
-            <h3>Team Overview</h3>
-          </div>
-          <div className="content-block-middle">
-            <div className="logo-container">
-              <img
-                src="https://t3.ftcdn.net/jpg/19/64/59/76/360_F_1964597606_N2qrUR69czkCsxsScELpCQj64EOJlUiv.jpg"
-                alt="ALT_TEXT_FOR_LOGO"
-              />
-            </div>
-            <span id="team-name">Hockey Team #1</span>
-          </div>
+          {selectedTeam && (
+            <>
+              <div className="content-block-top">
+                <h3>Team Overview</h3>
+              </div>
+              <div className="content-block-middle">
+                <div className="logo-container">
+                  <img
+                    src={selectedTeam.logoUrl}
+                    alt={`${selectedTeam.teamName}-logo`}
+                  />
+                </div>
+                <span id="team-name">{selectedTeam.teamName}</span>
+              </div>
+            </>
+          )}
         </div>
       </ContentBlock>
       <ContentBlock>

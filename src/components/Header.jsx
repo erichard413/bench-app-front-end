@@ -5,13 +5,21 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import { faBell } from "@fortawesome/free-regular-svg-icons";
 import { useTeams } from "../hooks/useTeamContext";
+import TeamsDropDown from "./TeamsDropDown";
+import { useSelectedTeam } from "../hooks/useSelectedTeamContext";
 
 function Header({ isMenuExpanded }) {
   const [isAccountExpanded, setIsAccountExpanded] = useState(false);
+  const [isTeamsDropdownExpanded, setIsTeamsDropdownExpanded] = useState(false);
   const { team, setTeam } = useTeams();
+  const { selectedTeam, setSelectedTeam } = useSelectedTeam();
 
   const handleAccountToggle = e => {
     setIsAccountExpanded(e => !e);
+  };
+
+  const handleTeamToggle = e => {
+    setIsTeamsDropdownExpanded(e => !e);
   };
 
   return (
@@ -21,14 +29,16 @@ function Header({ isMenuExpanded }) {
         style={{ paddingLeft: isMenuExpanded ? "17vw" : "60px" }}
       >
         <div className="logo-container">
-          <img
-            src="https://t3.ftcdn.net/jpg/19/64/59/76/360_F_1964597606_N2qrUR69czkCsxsScELpCQj64EOJlUiv.jpg"
-            alt="ALT_TEXT_FOR_LOGO"
-          />
+          {selectedTeam && (
+            <img src={selectedTeam.logoUrl} alt="ALT_TEXT_FOR_LOGO" />
+          )}
         </div>
-        <h2>Hockey Team #1</h2>
+        <h2>{selectedTeam && selectedTeam.teamName}</h2>
         <span className="down-chevron">
-          <FontAwesomeIcon icon={faChevronDown} />
+          <FontAwesomeIcon
+            icon={isTeamsDropdownExpanded ? faChevronUp : faChevronDown}
+            onClick={handleTeamToggle}
+          />
         </span>
         <div className="right-corner">
           <select id="season" name="season">
@@ -54,6 +64,11 @@ function Header({ isMenuExpanded }) {
         </div>
       </div>
       <AccountDropDown expanded={isAccountExpanded} />
+      <TeamsDropDown
+        expanded={isTeamsDropdownExpanded}
+        isMenuExpanded={isMenuExpanded}
+        setExpanded={setIsTeamsDropdownExpanded}
+      />
     </>
   );
 }
